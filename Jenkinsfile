@@ -1,15 +1,66 @@
-pipeline {
+pipeline{
     agent any
-    tools{
-      jdk 'localJDK'
-      maven 'localMaven' 
-    }
-    stages { 
-        stage ('Build') {
-            steps {
-                sh 'mvn clean package'
-                sh "/Applications/Docker.app/Contents/Resources/bin/docker build . -t tomcatwebapp:${env.BUILD_ID}"
+    stages{
+        stage("Init"){
+            steps{
+                echo "========executing A========"
             }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
+            }
+        }
+
+        stage("Build"){
+            steps{
+                echo "========executing B========"
+            }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
+            }
+        }
+
+        stage("Deploy"){
+            steps{
+                echo "========executing C========"
+            }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
+            }
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
         }
     }
 }
