@@ -1,6 +1,3 @@
-# maven-project
-Source code for James Lee's Jenkins course.
+# Web app deployed on AWS EC2 on tomcat.
 
-Check out the full list of DevOps and Big Data courses that James and Tao teach.
-
-https://www.level-up.one/courses/
+- Configuration defined in Jenkinsfile.
