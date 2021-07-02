@@ -1,50 +1,18 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage("Init"){
-            steps{
-                echo "========executing A========"
-            }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
-        }
+    stages {
 
         stage("Build"){
-            steps{
-                echo "========executing B========"
+            steps {
+                sh "mvn clean package"
             }
             post{
-                always{
+                always {
                     echo "========always========"
                 }
-                success{
-                    echo "========A executed successfully========"
-                }
-                failure{
-                    echo "========A execution failed========"
-                }
-            }
-        }
-
-        stage("Deploy"){
-            steps{
-                echo "========executing C========"
-            }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========A executed successfully========"
+                success {
+                    echo "========Build executed successfully========"
+                    archiveArtifacts artifacts: "**/target/*.war"
                 }
                 failure{
                     echo "========A execution failed========"
