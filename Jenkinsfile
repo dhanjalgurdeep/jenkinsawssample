@@ -23,6 +23,12 @@ pipeline {
                 }
             }
         }
+
+        stage("Deploy to Staging") {
+            steps {
+                build job: "AWS-Deploy-to-Staging"
+            }
+        }
     }
     post{
         always{
